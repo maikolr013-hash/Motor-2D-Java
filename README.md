@@ -61,3 +61,17 @@ classDiagram
     MotorJuego o-- EntidadVideojuego : contiene
     EntidadVideojuego <|-- Campeon : hereda
     GestorEntradas ..> EntidadVideojuego : modifica
+    
+    
+    usecaseDiagram
+    actor Jugador
+    
+    usecase "Iniciar Partida" as UC1
+    usecase "Mover Campeón" as UC2
+    usecase "Atacar Enemigo" as UC3
+    usecase "Guardar Partida Rápida" as UC4
+    
+    Jugador --> UC1
+    Jugador --> UC2
+    Jugador --> UC3
+    Jugador --> UC4
