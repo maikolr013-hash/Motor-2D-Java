@@ -59,6 +59,8 @@ classDiagram
     Main --> MotorJuego : inicializa
     Main --> GestorEntradas : usa
     MotorJuego o-- EntidadVideojuego : contiene
+
+
 ## 4. Especificación de Casos de Uso
 
 **Caso de Uso 1: Mover Campeón**
