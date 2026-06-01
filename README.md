@@ -61,3 +61,41 @@ classDiagram
     MotorJuego o-- EntidadVideojuego : contiene
     EntidadVideojuego <|-- Campeon : hereda
     GestorEntradas ..> EntidadVideojuego : modifica
+```
+```flowchart LR
+    Jugador([Jugador])
+    UC1(Iniciar Partida)
+    UC2(Mover Campeón)
+    UC3(Atacar Enemigo)
+    UC4(Guardar Partida Rápida)
+    
+    Jugador --> UC1
+    Jugador --> UC2
+    Jugador --> UC3
+    Jugador --> UC4
+```
+## 5. Especificación de Casos de Uso
+
+**Caso de Uso 1**
+| Campo | Descripción |
+| :--- | :--- |
+| **Nombre** | CU-01 Mover Campeón |
+| **Objetivo** | Desplazar a un campeón por las coordenadas del mapa. |
+| **Actor Principal** | Jugador |
+| **Precondiciones** | El estado de `MotorJuego` debe ser "JUGANDO" y la entidad debe existir en la lista. |
+| **Flujo Principal** | 1. El jugador emite un comando de dirección. <br> 2. `GestorEntradas` intercepta el comando. <br> 3. Se actualizan las coordenadas (x, y) de la entidad. <br> 4. `MotorJuego` verifica colisiones. |
+
+**Caso de Uso 2**
+| Campo | Descripción |
+| :--- | :--- |
+| **Nombre** | CU-02 Guardar Partida Rápida |
+| **Objetivo** | Exportar el estado actual de las entidades y el motor para no perder el progreso. |
+| **Actor Principal** | Jugador |
+| **Precondiciones** | El juego debe estar inicializado y tener entidades cargadas. |
+| **Flujo Principal** | 1. El jugador solicita guardar. <br> 2. `MotorJuego` recopila el estado actual ("JUGANDO", etc.). <br> 3. Se formatea la información a un String estructurado (JSON simulado). <br> 4. Se imprime el resultado. |
+
+## 6. Bitácora del Uso de Inteligencia Artificial
+
+* **Herramienta utilizada:** Gemini (Google). Rol: Asistente de codificación en Java.
+* **Control de Errores de la IA:** Durante el diseño de la arquitectura inicial, la IA cometió el error de sobre-ingeniería intentando generar clases separadas para renderizado y audio. Tuve que corregir esto manualmente mediante prompts restrictivos para unificar las lógicas dentro de las clases permitidas y no superar el límite estricto de 6 clases de la tarea.
+* **Reflexión Crítica:** Programar un motor asistido por IA agiliza la creación de código repetitivo y estructuras iniciales. Sin embargo, exige que el desarrollador actúe como un revisor técnico estricto para asegurar que el modelo respete las limitaciones impuestas por la rúbrica y no genere estructuras innecesarias.
